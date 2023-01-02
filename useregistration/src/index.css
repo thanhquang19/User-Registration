@@ -9,10 +9,21 @@ body {
   color: #0C2427;
   text-align: center;
   font-size: 14px;
-
+  width: 500px;
+  height: 500px;
+  margin: 100px auto;
 
 }
 
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -22,28 +33,33 @@ code {
 button {
   background-color: #D0EDF1;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   box-sizing: border-box;
-  padding: 5px 10px;
-  width: 85%;
+  padding: 5px 20px;
+
 }
 
 input {
   background-color: #FCF0F2;
-  border: none;
-  border-radius: 15px;
+  border: #D0EDF1 2px solid;
+  border-radius: 10px;
   font-size: 16px;
   padding: 2px;
-  width: 85%;
+  width: 90%;
 }
 
 form {
   background-color: #EFF8F3;
   aspect-ratio: 5 / 7;
   margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
  
 }
 
@@ -51,7 +67,21 @@ form {
   background-color: #FCF0F2;
   width: 45%;
   aspect-ratio: 5 / 7;
+  border: #D0EDF1 5px solid;
+  border-radius: 20px;
   margin: 100px auto;
   display: flex;
-
+  flex-flow: column;
+  justify-content: center;
 }
+
+.link-route {
+  text-decoration: none;
+}
+
+.link-route:visited {
+  text-decoration: none;
+  color: #0C2427;
+}
+
+ 

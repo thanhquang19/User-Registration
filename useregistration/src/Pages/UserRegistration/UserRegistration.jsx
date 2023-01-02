@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Confirmation from './Confirmation'
+import './UserRegistration.css'
 
 
 export default function UserRegistration() {
@@ -30,13 +31,13 @@ export default function UserRegistration() {
       <form id='regist-form'>
         <label for='fullname'>fullname</label>
         <input type='text' id='fullname'></input>
-        <br/>
+
         <label for='email'>email</label>
         <input type='email' id='email'></input>
-        <br/>
+
         <label for='secure-question'>secure question</label>
-        <input type='text' id='secure-question' list='question-list'></input>
-        <input type='text' id='secure-answer'></input>
+        <input type='text' id='secure-question' list='question-list' placeholder='select a question or create your own'></input>
+        <input type='text' id='secure-answer' placeholder='your response'></input>
         <datalist id='question-list'>
           <option>In what city were you born?</option>
           <option>What is the name of your favorite pet?</option>
@@ -48,7 +49,7 @@ export default function UserRegistration() {
         <input type='text' id='username'></input>
         <label for='password'>password</label>
         <input type='text' id='password'></input>
-       
+        <br/>
         <button id='signup-btn' onClick={handleSignup}>sign up</button>
       </form>
       <Confirmation isOpen = {isModalOpen} isClose={closeModal}/>
