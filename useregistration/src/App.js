@@ -1,21 +1,31 @@
 
-import Login from "./Pages/Log-in/Login.jsx";
-import UserProfile from "./Pages/UserProfile/UserProfile.jsx";
+ 
+import {BrowserRouter, Route, Routes, Link, Outlet} from 'react-router-dom'
+import UserRegistration from "./Pages/UserRegistration/UserRegistration.jsx";
+import PrivateRoutes from "./Routes/PrivateRoutes.jsx";
 
 function App() {
   return (
 
-    <div className="App">
+    <BrowserRouter>
+     <h1>User Registration</h1>
+          
+      {/* <div>
+        <Link path='/'>User Profile</Link>
+        <br/>
+        <Link to='/login'>Login</Link>
+        <br/>
+        <Link to='/registration'>User Registration</Link>
+      </div> */}
 
+        <Routes>
+          <Route path='/' element={<PrivateRoutes/>} /> 
+          {/* <Route path='/login' element={<Login/>}/>        */}
+          <Route path='/registration' element={<UserRegistration/>}/>
+        </Routes>
+   
 
-      User Registration
-      <Login/>
-
-      <UserProfile/>
-
-      
-
-    </div>
+    </BrowserRouter>
 
   
   );

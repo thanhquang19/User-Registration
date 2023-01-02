@@ -1,20 +1,36 @@
-import React from 'react';
+import {React, useRef} from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import './Login.css';
 
 
-export default function Login() {
+export default function Login(props) {
+  
+  const username = useRef();
+  const password = useRef();
+
+  const handleSignin = (e) => {
+    e.preventDefault();
+    props.validateUser(username.current.value, password.current.value)
+  }
+
   return (
     <form id='login-form'>
-      <div>err msg</div>
-      <label for="username"> User Name</label>
-      <input id='username' type="text"></input>
+      <div>{props.errMsg}</div>
+      <label for="username"> username</label>
+      <input  ref={username} id='username' type="text"></input>
       <br/>
-      <label for="password">Password</label>
-      <input id='password' type="password"></input>
+      <label for="password">password</label>
+      <input  ref={password} id='password' type="password"></input>
       <br/>
-
-      <button> Sign-in</button>
-      <div> nw user? Register here</div>
+      
+      <p>forget username or password?</p>
+      <br/>
+      
+      <button id='singin-btn' onClick={handleSignin}> sign in</button>
+      <br/>
+      <Link to='/registration'>new user? Register here</Link>
+      <Outlet/>
+       
     </form>
 
   )
