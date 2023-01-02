@@ -1,16 +1,41 @@
 import {React, useState} from 'react'
 import Login from '../Pages/Log-in/Login'
-import UserProfile from '../Pages/UserProfile/UserProfile';
-import UserRegistration from '../Pages/UserRegistration/UserRegistration'
+
+import UserProfile from '../Pages/UserProfile/UserProfile'
 
 export default function PrivateRoutes() {
-    const[isValid, updateIsValid]= useState(false);
-    const currentUser='';
-  return (
-    currentUser? //ternary condition, if true go to profile, if false go to login
-    <UserProfile/>
-    :
-    <Login/>
+    const [currentUser, getCurrentUser] = useState()
+    // a bug here is that the currentUser is reset when page is refreshed
+    const [errMsg, getErrMsg] = useState(" ")
+    const registeredUser = {
+        username: 'thanh',
+        password: '12345'
+    }
+    const validateUser = (username, password) => {
+        
+        // the following will be replaced with a GET method request
+        // the concern is how to hide the password while the GET request doesn't have a body
+
+        if(
+          username === registeredUser.username
+          &&
+          password === registeredUser.password
+        ) {
+
+          getCurrentUser({username: username, password: password})
     
-  )
+        }
+        else {
+          getErrMsg('unmatch username or password')
+        }
+      }
+ 
+    return (
+        currentUser?
+        <UserProfile/>
+        :
+        <Login validateUser={validateUser} errMsg={errMsg}/>
+        
+    )
+
 }

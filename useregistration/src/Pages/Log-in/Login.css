@@ -1,5 +1,11 @@
 #login-form {
     background-color: #EFF8F3;
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 5 / 7;
     width: 50%;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
 }
