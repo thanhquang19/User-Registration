@@ -30,21 +30,21 @@ export default function Login(props) {
 
   return (
     <form id='login-form'>
-      <div>{props.errMsg}</div>
+      <div id='errMsg'>{props.errMsg}</div>
       <label for="username"> username</label>
       <input  ref={username} id='username' type="text"></input>
-      <br/>
+     
       <label for="password">password</label>
       <input  ref={password} id='password' type="password"></input>
-      <br/>
+     
       
       <div onClick={() => openModal()} style={{cursor: 'pointer'}}>forget username or password?</div>
       <ForgotPassword isOpen={isModalOpen} isClose={closeModal}/>
-      <br/>
+     
       
       <button id='singin-btn' onClick={handleSignin}> sign in</button>
       <br/>
-      <Link to='/registration'>new user? Register here</Link>
+      <Link className='link-route' to='/registration'>new user? register here</Link>
       <Outlet/>
        
     </form>
