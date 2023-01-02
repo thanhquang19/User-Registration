@@ -1,3 +1,4 @@
+
 import {React, useState} from 'react'
 import Confirmation from './Confirmation'
 
@@ -53,5 +54,6 @@ export default function UserRegistration() {
       </form>
       <Confirmation isOpen = {isModalOpen} isClose={closeModal}/>
     </div>
+
   )
 }

@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Login from '../Pages/Log-in/Login'
+
 import UserProfile from '../Pages/UserProfile/UserProfile'
 
 export default function PrivateRoutes() {
@@ -36,4 +37,5 @@ export default function PrivateRoutes() {
         <Login validateUser={validateUser} errMsg={errMsg}/>
         
     )
+
 }
