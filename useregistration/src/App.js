@@ -3,6 +3,7 @@
 import {BrowserRouter, Route, Routes, Link, Outlet} from 'react-router-dom'
 import UserRegistration from "./Pages/UserRegistration/UserRegistration.jsx";
 import PrivateRoutes from "./Routes/PrivateRoutes.jsx";
+import Login from './Pages/Log-in/Login.jsx';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
 
         <Routes>
           <Route path='/' element={<PrivateRoutes/>} /> 
-          {/* <Route path='/login' element={<Login/>}/>        */}
+          <Route path='/login' element={<Login/>}/>       
           <Route path='/registration' element={<UserRegistration/>}/>
         </Routes>
    

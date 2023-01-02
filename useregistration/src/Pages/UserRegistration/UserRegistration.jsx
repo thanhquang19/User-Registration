@@ -1,6 +1,30 @@
-import React from 'react'
+import {React, useState} from 'react'
+import Confirmation from './Confirmation'
+
 
 export default function UserRegistration() {
+
+  // to consider write the below codes (to closeModal) into a separate file
+  const [isModalOpen, getIsModalOpen] = useState();
+
+
+  const openModal = (e) => {
+  
+    getIsModalOpen(true);
+
+  }
+
+  const closeModal = (e) => {
+    getIsModalOpen(false);
+  }
+  
+  const handleSignup = (e) => {
+    e.preventDefault();
+     /* the onClick Event for button will be re-written 
+    so that it will send data to the server */
+
+    openModal();
+  }
   return (
     <div>
       <form id='regist-form'>
@@ -8,7 +32,7 @@ export default function UserRegistration() {
         <input type='text' id='fullname'></input>
         <br/>
         <label for='email'>email</label>
-        <input type='text' id='email'></input>
+        <input type='email' id='email'></input>
         <br/>
         <label for='secure-question'>secure question</label>
         <input type='text' id='secure-question' list='question-list'></input>
@@ -24,8 +48,10 @@ export default function UserRegistration() {
         <input type='text' id='username'></input>
         <label for='password'>password</label>
         <input type='text' id='password'></input>
-        <button id='signup-btn'>sign up</button>
+       
+        <button id='signup-btn' onClick={handleSignup}>sign up</button>
       </form>
+      <Confirmation isOpen = {isModalOpen} isClose={closeModal}/>
     </div>
   )
 }
