@@ -13,6 +13,7 @@ export default function Confirmation(props) {
         shouldCloseOnEsc
         shouldCloseOnOverlayClick
         onRequestClose={props.isClose}
+        className='modal'
     >
         <p>your account has been successfully created</p>
         <Link to='/'> <h3>return to log-in</h3></Link>

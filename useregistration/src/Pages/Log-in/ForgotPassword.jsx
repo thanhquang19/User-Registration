@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import Modal from 'react-modal'
+import './ForgotPassword.css'
  
 
 Modal.setAppElement('#root');
@@ -15,15 +16,16 @@ export default function ForgotPassword(props) {
     return (
         <Modal isOpen={props.isOpen} 
         shouldCloseOnEsc shouldCloseOnOverlayClick
-        onRequestClose={props.isClose}> 
+        onRequestClose={props.isClose}
+        className='modal'
+        > 
                  <form id='forgotpwd-form'>
-                    <h4>enter your registered email</h4>
+                    <p>enter your registered email</p>
                     <input type='email' ></input>
                     <br/>
-                    <button id='getPwd-btn' onClick={handleGetPwd}>get new password</button>
-                    <div>{confirmation}</div>
-                    
+                    <button id='getPwd-btn' onClick={handleGetPwd}>get new password</button>                
                  </form>
+                 <div id='confirmation'>{confirmation}</div>
         </Modal>
     )
 }

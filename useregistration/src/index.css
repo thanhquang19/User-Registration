@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #D0EDF1;
   color: #0C2427;
+  text-align: center;
+  font-size: 14px;
+
+
 }
 
 code {
@@ -19,7 +23,35 @@ button {
   background-color: #D0EDF1;
   border: none;
   border-radius: 15px;
-  font-size: 30px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  width: 85%;
+}
+
+input {
+  background-color: #FCF0F2;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  padding: 2px;
+  width: 85%;
+}
+
+form {
+  background-color: #EFF8F3;
+  aspect-ratio: 5 / 7;
+  margin: auto;
+ 
+}
+
+.modal {
+  background-color: #FCF0F2;
+  width: 45%;
+  aspect-ratio: 5 / 7;
+  margin: 100px auto;
+  display: flex;
+
 }
