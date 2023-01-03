@@ -6,7 +6,10 @@ import UserProfile from '../Pages/UserProfile/UserProfile'
 export default function PrivateRoutes() {
     const [currentUser, getCurrentUser] = useState()
     // a bug here is that the currentUser is reset when page is refreshed
+    // currentUser will be updated according to the response of the GET request
+
     const [errMsg, getErrMsg] = useState("sign in with username and password ")
+    
     const registeredUser = {
         username: 'thanh',
         password: '12345'
