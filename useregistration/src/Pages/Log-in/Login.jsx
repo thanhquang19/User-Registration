@@ -32,10 +32,10 @@ export default function Login(props) {
     <form id='login-form'>
       <div id='errMsg'>{props.errMsg}</div>
       <label for="username"> username</label>
-      <input  ref={username} id='username' type="text"></input>
+      <input  ref={username} id='username' type="text" required></input>
      
       <label for="password">password</label>
-      <input  ref={password} id='password' type="password"></input>
+      <input  ref={password} id='password' type="password" required></input>
      
       
       <div onClick={() => openModal()} style={{cursor: 'pointer'}}>forget username or password?</div>

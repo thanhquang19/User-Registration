@@ -1,0 +1,14 @@
+- a middleware to connect to database
+
+
+- a middleware to handle request /
+    - get /:username ==> return if username is already exist (see sign-up page)
+    - get /?username=''&password='' ==> return user including fullname, email, username (see sign-in page)
+    - post / ==> turn create user account (see sign-up page)
+    - put /?whateverTheQueryString ==> update user UserProfile
+    
+- a middleware to handle request /email
+    - get /:email ==> return if an email is associated with an existing account
+    
+
+- a middleware to end database connection
