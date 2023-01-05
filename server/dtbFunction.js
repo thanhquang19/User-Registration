@@ -47,4 +47,16 @@ const findAuthUser = async (username, password) => {
 
 }
 
+
+const findRegisterEmail = async (email) => {
+    connectToDatabase();
+    const registerEmail = userCollection.find(
+        {email: email}
+    ).project( {
+        email: 1
+    }).toArray();
+
+    return registerEmail;
+}
 module.exports.findAuthUser = findAuthUser;
+module.exports.findRegisterEmail = findRegisterEmail;

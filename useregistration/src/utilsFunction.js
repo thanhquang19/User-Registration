@@ -18,3 +18,22 @@ export const findAuthUser = async (username, password) => {
         console.log(JSON.stringify(err));
     }
 }
+
+export const findRegisterEmail = async (email) => {
+    try {
+        const registerEmail = await fetch (`http://localhost:3001/email/${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type' :'application/json'
+            }
+        }).then(response => response.json())
+        .then(data => data.email)
+        
+        return registerEmail; 
+
+    }
+    catch(err) {
+        return null;
+    }
+
+}

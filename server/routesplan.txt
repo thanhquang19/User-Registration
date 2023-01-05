@@ -8,7 +8,7 @@
     - put /?whateverTheQueryString ==> update user UserProfile
     
 - a middleware to handle request /email
-    - get / ==> return if an email is associated with an existing account
+    - get /:email ==> return if an email is associated with an existing account
     
 
 - a middleware to end database connection
