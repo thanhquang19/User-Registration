@@ -7,7 +7,10 @@ Modal.setAppElement('#root');
 export default function ForgotPassword(props) {
 
    const [confirmation, getConfirmation]  = useState('click to get a new password');
-
+// the confirmation returns
+// 'click to get a new pwd' as default
+// a sent confirmation as the handleGetPwd function
+// an err where the email is not registered
    const handleGetPwd = (e) => {
     e.preventDefault();
     getConfirmation('a new password has been sent to your email');
@@ -17,7 +20,7 @@ export default function ForgotPassword(props) {
         <Modal isOpen={props.isOpen} 
         shouldCloseOnEsc shouldCloseOnOverlayClick
         onRequestClose={()=> {
-            getConfirmation('')
+            getConfirmation('click to get a new password')
             props.isClose();
         }}
         className='modal'

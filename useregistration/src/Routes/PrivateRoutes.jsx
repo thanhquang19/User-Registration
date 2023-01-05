@@ -2,6 +2,7 @@ import {React, useState} from 'react'
 import Login from '../Pages/Log-in/Login'
 
 import UserProfile from '../Pages/UserProfile/UserProfile'
+import { findAuthUser } from '../utilsFunction'
 
 export default function PrivateRoutes() {
     
@@ -12,36 +13,27 @@ export default function PrivateRoutes() {
     
     const [authUser, getAuthUSer] = useState();
     
-
-    const findAuthUser = async (username, password) => {
-        const userSearchParam = new URLSearchParams();
-        userSearchParam.append('username', username);
-        userSearchParam.append('password', password)
-        try {
-            const user = await fetch(`http://localhost:3001/user?${userSearchParam.toString()}`, {
-            method: 'GET',
-            headers : {
-                'Content-Type' :'application/json'
-            }
-        })
-        .then (response => response.json())
-
-        getAuthUSer(user);
-
+    const findAndAssignAuthUser = async (username, password) => {
+        const user = await findAuthUser(username, password);
+        console.log(user);
+        if(user != null) {
+            getAuthUSer(user);
         }
-        catch(err) {
-           
-            getAuthUSer()
+        else {
             getErrMsg('unmatched username or password')
+            getAuthUSer()
         }
-      
+
     }
+    
+      
+    
  
     return (
         authUser?
         <UserProfile/>
         :
-        <Login validateUser={findAuthUser} errMsg={errMsg}/>
+        <Login validateUser={findAndAssignAuthUser} errMsg={errMsg}/>
         
     )
 
