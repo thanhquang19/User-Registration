@@ -43,7 +43,7 @@ export default function UserRegistration() {
 
     const newUser = createNewUser(
       fullname.current.value,
-      e.current.value,
+      email.current.value,
       secureQuestion.current.value,
       secureAnswer.current.value,
       username.current.value,
@@ -51,7 +51,7 @@ export default function UserRegistration() {
     );
     
     console.log(newUser)
-    
+
     openModal();
   }
   return (

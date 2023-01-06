@@ -21,7 +21,7 @@ const disconnectToDatabase = async () => {
 
 const findAuthUser = async (username, password) => {
 
-    await connectToDatabase();
+    connectToDatabase();
 
     const authUser =  await userCollection.find(
         {
@@ -39,7 +39,7 @@ const findAuthUser = async (username, password) => {
             'fullname': 1,
             'email' :1
         }
-    ).toArray();
+    ).toArray()
 
     // still cannot close connection to the database
     //disconnectToDatabase();
@@ -55,11 +55,40 @@ const findRegisterEmail = async (email) => {
         {email: email}
     ).project( {
         email: 1
-    }).toArray();
+    }).toArray()
 
     return registerEmail;
 
 }
+
+const insertNewUser = async(
+    fullname, 
+    email,
+    secureQuestion,
+    secureAnswer,
+    username,
+    password
+) => {
+        connectToDatabase();
+        const newUserCreated = await userCollection.insertOne( {
+            fullname: fullname,
+            email: email,
+            authentication: {
+                username: username,
+                password: password
+            },
+            secureQuestion: {
+                question: secureQuestion,
+                answer: secureAnswer
+            }
+        }).then(result => result.insertedId)
+        
+        return newUserCreated;
+    
+}
+
+
 module.exports.findAuthUser = findAuthUser;
 module.exports.findRegisterEmail = findRegisterEmail;
 module.exports.disconnectToDatabase = disconnectToDatabase;
+module.exports.insertNewUser = insertNewUser;

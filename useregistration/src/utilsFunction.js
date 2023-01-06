@@ -40,32 +40,32 @@ export const findRegisterEmail = async (email) => {
 
 // the default values to be removed
 export const createNewUser = async (
-    fullname='thanh', 
-    email='thanh@gmail.com',
-    secureQuestion='abd?',
-    secureAnswer='c',
-    username='thanh',
-    password='12345'
+    fullname, 
+    email,
+    secureQuestion,
+    secureAnswer,
+    username,
+    password
     ) => {
+    const newUserInfo = {
+        
+            fullname: fullname,
+            email: email,
+            username: username,
+            password: password,
+            question: secureQuestion,
+            secureAnswer: secureAnswer
+           
+    }
+    console.log(JSON.stringify(newUserInfo))
     try {
         const newUserCreated = await fetch (`http://localhost:3001/user`, {
             method: 'POST',
             headers: {
                 'Content-Type' :'application/json'
             },
-            body: {
-                fullname: fullname,
-                email: email,
-                authentication: {
-                    username: username,
-                    password: password
-                },
-                securequestion: {
-                    question: secureQuestion,
-                    secureAnswer: secureAnswer
-                }
-            }
-        })
+            body: JSON.stringify(newUserInfo)
+        }).then(response => response.json())
         return newUserCreated;
     } catch(err) {
         return null;

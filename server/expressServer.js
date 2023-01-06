@@ -19,9 +19,9 @@ server.use('/user', userRouter)
 server.use('/email', emailRouter)
 
 
-server.use((req, res, next)=> {
-    disconnectToDatabase();
-})
+// server.use((req, res, next)=> {
+//     disconnectToDatabase();
+// })
 
 server.listen(port, ()=> {
     console.log(`server is listening on port ${port}`)

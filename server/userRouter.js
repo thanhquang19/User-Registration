@@ -1,5 +1,5 @@
 const express = require('express');
-const {findAuthUser} = require('./dtbFunction')
+const {findAuthUser, insertNewUser} = require('./dtbFunction')
 
 const userRouter = express.Router();
 
@@ -24,15 +24,31 @@ userRouter.get('/', async (req, res, next) => {
         res.send(authUser[0])
     }
     
-   
-
-    next();
+  
    
 })
 
-userRouter.post('/', (req, res, next)=> {
- 
-    next();
+userRouter.post('/', async (req, res, next) => {
+    console.log(`post request`)
+    console.log(req.body);
+    try {
+        const insertedID = await insertNewUser(
+            req.body.fullname,
+            req.body.email,
+            req.body.username,
+            req.body.password,
+            req.body.question,
+            req.body.secureAnswer
+    
+        )
+        console.log(insertedID)
+        res.send(insertedID);
+    } catch(err) {
+        console.log('404');
+        res.status(404).send()
+    }
+
+   
 })
 
 
