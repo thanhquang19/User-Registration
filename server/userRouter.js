@@ -26,10 +26,14 @@ userRouter.get('/', async (req, res, next) => {
     
    
 
+    next();
    
 })
 
-
+userRouter.post('/', (req, res, next)=> {
+ 
+    next();
+})
 
 
 

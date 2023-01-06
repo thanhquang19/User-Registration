@@ -20,9 +20,10 @@ const disconnectToDatabase = async () => {
 
 
 const findAuthUser = async (username, password) => {
-    connectToDatabase();
 
-    const authUser = userCollection.find(
+    await connectToDatabase();
+
+    const authUser =  await userCollection.find(
         {
             authentication : {
                 username: username,
@@ -57,6 +58,8 @@ const findRegisterEmail = async (email) => {
     }).toArray();
 
     return registerEmail;
+
 }
 module.exports.findAuthUser = findAuthUser;
 module.exports.findRegisterEmail = findRegisterEmail;
+module.exports.disconnectToDatabase = disconnectToDatabase;
