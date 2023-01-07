@@ -44,10 +44,11 @@ export default function UserRegistration() {
     const newUser = createNewUser(
       fullname.current.value,
       email.current.value,
-      secureQuestion.current.value,
-      secureAnswer.current.value,
       username.current.value,
-      password.current.value
+      password.current.value,
+      secureQuestion.current.value,
+      secureAnswer.current.value
+      
     );
     
     console.log(newUser)
@@ -82,7 +83,7 @@ export default function UserRegistration() {
         {/* here at username field, create a function to check if username is already exist */}
         
         <label for='password'>password</label>
-        <input ref={password} type='text' id='password'></input>
+        <input ref={password} type='password' id='password'></input>
         
 
         <br/>
