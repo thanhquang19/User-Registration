@@ -1,5 +1,5 @@
 const express = require('express');
-const {findAuthUser} = require('./dtbFunction')
+const {findAuthUser, insertNewUser, findUserByUsername} = require('./dtbFunction')
 
 const userRouter = express.Router();
 
@@ -24,14 +24,46 @@ userRouter.get('/', async (req, res, next) => {
         res.send(authUser[0])
     }
     
+  
    
+})
+
+userRouter.post('/', async (req, res, next) => {
+    // this route is to create a new user
+    console.log(`post request`)
+    console.log(req.body);
+    try {
+        const insertedID = await insertNewUser(
+            req.body.fullname,
+            req.body.email,
+            req.body.username,
+            req.body.password,
+            req.body.question,
+            req.body.secureAnswer
+    
+        )
+        console.log(insertedID)
+        res.send(insertedID);
+    } catch(err) {
+        console.log('404');
+        res.status(404).send()
+    }
 
    
 })
 
-
-
-
+userRouter.get('/:username', async (req, res, next) => {
+    // this route is to check if a username is already existing
+    console.log(req.params.username);
+    const user = await findUserByUsername(req.params.username);
+    if(user.length == 0) {
+        res.status(404).send(false) //username is not existing
+    }
+    else {
+        res.send(true) // username is already existing
+    }
+    next();
+})
 
 
 
