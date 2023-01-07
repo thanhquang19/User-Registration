@@ -1,7 +1,7 @@
 
-import {React, useEffect, useRef, useState} from 'react'
+import {React, useRef, useState} from 'react'
 import Confirmation from './Confirmation'
-import  { createNewUser} from '../../utilsFunction'
+import  { createNewUser, checkUserNameExisting, findRegisterEmail} from '../../utilsFunction'
 import './UserRegistration.css'
 
 
@@ -33,21 +33,56 @@ export default function UserRegistration() {
   }
 
   const closeModal = (e) => {
-    getIsModalOpen(false);
+     getIsModalOpen(false);
   }
+
+  const usernameAvailableCheck = async () => {
+      if(username.current.value.length > 0) 
+      //only excecute code when the username field is not empty
+      {
+        const isUsernameExisting = await checkUserNameExisting(username.current.value)
+        // if a username is already existing, it's not available
+        if(isUsernameExisting) {
+          console.log(isUsernameExisting)
+          getUsernameAvailable('username has been taken');
+          getIsFormErr(true)
+          
+        }
+        else {
+          getUsernameAvailable('username');
+          
+        }
+      }
+  } 
   
-  const handleSignup = (e) => {
+  const emailAvailableCheck = async () => {
+    if(email.current.value.length > 0) {
+      const registerEmail = await findRegisterEmail(email.current.value);
+      // the findRegisterEmail return a string rather than a boolean
+      if(registerEmail) {
+        // the email is already existing
+        console.log(registerEmail)
+        getEmailAvailable(`this email has been registered under another account`)
+        getIsFormErr(true)
+      }
+      else {
+        getEmailAvailable('email')
+      }
+    }
+  }
+  const handleSignup = async (e) => {
     e.preventDefault();
      /* the onClick Event for button will be re-written 
     so that it will send data to the server */
-
-    const newUser = createNewUser(
+    // also the below is called only when there is no err on form
+    const newUser = await createNewUser(
       fullname.current.value,
       email.current.value,
-      username.current.value,
-      password.current.value,
       secureQuestion.current.value,
-      secureAnswer.current.value
+      secureAnswer.current.value,
+      username.current.value,
+      password.current.value
+      
       
     );
     
@@ -62,7 +97,7 @@ export default function UserRegistration() {
         <input type='text' id='fullname' ref={fullname}></input>
 
         <label for='email'> {<span className='err'>{emailAvailable}</span>} </label> 
-        <input type='email' id='email' ref={email}></input> 
+        <input type='email' id='email' ref={email} onBlur={emailAvailableCheck}></input> 
         {/* here at the email field, create a function to check if the email is associated with an already existing account
         promt the confirmation with an err*/}
 
@@ -79,7 +114,7 @@ export default function UserRegistration() {
         </datalist>
         
         <label for='username'></label> <span className='err'>{usernameAvailable}</span>
-        <input ref={username} type='text' id='username'></input>
+        <input ref={username} type='text' id='username' onBlur={usernameAvailableCheck}></input>
         {/* here at username field, create a function to check if username is already exist */}
         
         <label for='password'>password</label>

@@ -88,7 +88,19 @@ const insertNewUser = async(
 }
 
 
+const findUserByUsername = async (username) => {
+    connectToDatabase();
+    const user = userCollection.find(
+        {'authentication.username': username}
+    ).project( {
+        'authentication.username': 1
+    }).toArray()
+
+    return user;
+}
+
 module.exports.findAuthUser = findAuthUser;
 module.exports.findRegisterEmail = findRegisterEmail;
 module.exports.disconnectToDatabase = disconnectToDatabase;
 module.exports.insertNewUser = insertNewUser;
+module.exports.findUserByUsername = findUserByUsername;

@@ -38,7 +38,7 @@ export const findRegisterEmail = async (email) => {
 
 }
 
-// the default values to be removed
+
 export const createNewUser = async (
     fullname, 
     email,
@@ -69,5 +69,22 @@ export const createNewUser = async (
         return newUserCreated;
     } catch(err) {
         return null;
+    }
+}
+
+export const checkUserNameExisting = async (username) => {
+ 
+    try {
+        const isUsernameExisting = await fetch(`http://localhost:3001/user/${username}`, {
+        method:'GET',
+        headers: {
+            'Content-Type' :'application/json'
+        }
+        }).then(response => response.json())
+
+        console.log(isUsernameExisting);
+        return isUsernameExisting;
+    } catch (err) {
+        return  false;
     }
 }
