@@ -9,7 +9,7 @@ export default function UserRegistration() {
   // states
   const [emailAvailable, getEmailAvailable] = useState('email');
   const [usernameAvailable, getUsernameAvailable] = useState('username');
-  const [errMsg, getErrMsg] = useState(`complete form`);
+  const [errMsg, getErrMsg] = useState(`complete the form`);
   // when there is an err in the form, the sign-up button is disabled
   // what event to trigger check form err
    
@@ -84,6 +84,7 @@ export default function UserRegistration() {
       getErrMsg(`error found`)
     }
     else {
+      getErrMsg('complete the form')
       const newUser = await createNewUser(
         fullname.current.value,
         email.current.value,
