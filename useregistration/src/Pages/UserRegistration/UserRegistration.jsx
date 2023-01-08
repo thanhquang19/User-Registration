@@ -11,6 +11,7 @@ export default function UserRegistration() {
   const [usernameAvailable, getUsernameAvailable] = useState('username');
   const [isFormErr, getIsFormErr] = useState(false);
   // when there is an err in the form, the sign-up button is disabled
+  // what event to trigger check form err
    
   // ref
   const fullname = useRef();
