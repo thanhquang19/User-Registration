@@ -1,0 +1,15 @@
+#user-profile {
+    padding: 5px 0;
+    justify-content: flex-start;
+}
+#change-password-set  {
+    margin: 10px 0px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+#change-password-set[hidden] {
+    display: none;
+}
