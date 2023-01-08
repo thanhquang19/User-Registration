@@ -88,3 +88,15 @@ export const checkUserNameExisting = async (username) => {
         return  false;
     }
 }
+
+export const checkEmptyInputs = (
+    a, b, c, d, e, f  
+) => {
+    const inputArray = [a, b, c, d, e, f];
+    for(let input of inputArray) {
+        if(input.current.value.length === 0) {
+            return true;
+        }
+    }
+    return false;
+}
