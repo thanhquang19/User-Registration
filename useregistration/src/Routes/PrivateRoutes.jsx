@@ -26,12 +26,14 @@ export default function PrivateRoutes() {
 
     }
     
-      
+     const signOut = () => {
+        getAuthUSer(null);
+     } 
     
  
     return (
         authUser?
-        <UserProfile/>
+        <UserProfile currentUser = {authUser} signOut={signOut}/>
         :
         <Login validateUser={findAndAssignAuthUser} errMsg={errMsg}/>
         

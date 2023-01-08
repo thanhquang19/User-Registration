@@ -46,6 +46,10 @@ button:disabled {
   background-color: gray;
 }
 
+button.btn {
+  border: #0C2427 2px solid;
+}
+
 input {
   background-color: #FCF0F2;
   border: #D0EDF1 2px solid;
