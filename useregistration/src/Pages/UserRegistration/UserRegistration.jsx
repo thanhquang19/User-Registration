@@ -1,7 +1,7 @@
 
 import {React, useRef, useState} from 'react'
 import Confirmation from './Confirmation'
-import  { createNewUser, checkUserNameExisting, findRegisterEmail} from '../../utilsFunction'
+import  { createNewUser, checkUserNameExisting, findRegisterEmail, checkEmptyInputs} from '../../utilsFunction'
 import './UserRegistration.css'
 
 
@@ -9,8 +9,9 @@ export default function UserRegistration() {
   // states
   const [emailAvailable, getEmailAvailable] = useState('email');
   const [usernameAvailable, getUsernameAvailable] = useState('username');
-  const [isFormErr, getIsFormErr] = useState(false);
+  const [errMsg, getErrMsg] = useState(`complete the form`);
   // when there is an err in the form, the sign-up button is disabled
+  // what event to trigger check form err
    
   // ref
   const fullname = useRef();
@@ -45,8 +46,7 @@ export default function UserRegistration() {
         if(isUsernameExisting) {
           console.log(isUsernameExisting)
           getUsernameAvailable('username has been taken');
-          getIsFormErr(true)
-          
+                   
         }
         else {
           getUsernameAvailable('username');
@@ -63,36 +63,48 @@ export default function UserRegistration() {
         // the email is already existing
         console.log(registerEmail)
         getEmailAvailable(`this email has been registered under another account`)
-        getIsFormErr(true)
+        
       }
       else {
         getEmailAvailable('email')
       }
     }
   }
+
   const handleSignup = async (e) => {
     e.preventDefault();
      /* the onClick Event for button will be re-written 
     so that it will send data to the server */
     // also the below is called only when there is no err on form
-    const newUser = await createNewUser(
-      fullname.current.value,
-      email.current.value,
-      secureQuestion.current.value,
-      secureAnswer.current.value,
-      username.current.value,
-      password.current.value
-      
-      
-    );
-    
-    console.log(newUser)
 
-    openModal();
+    const isAnyInputEmpty = checkEmptyInputs(
+      fullname, email, secureQuestion, secureAnswer, username, password
+    )
+    if(isAnyInputEmpty || emailAvailable !== 'email' || usernameAvailable !== 'username') {
+      getErrMsg(`error found`)
+    }
+    else {
+      getErrMsg('complete the form')
+      const newUser = await createNewUser(
+        fullname.current.value,
+        email.current.value,
+        secureQuestion.current.value,
+        secureAnswer.current.value,
+        username.current.value,
+        password.current.value    
+        
+      );
+      
+      console.log(newUser)
+  
+      openModal();
+    }
+    
   }
   return (
     <div>
       <form id='regist-form'>
+        <h3>{errMsg}</h3>
         <label for='fullname'>full name</label>
         <input type='text' id='fullname' ref={fullname}></input>
 
@@ -122,7 +134,7 @@ export default function UserRegistration() {
         
 
         <br/>
-        <button id='signup-btn' onClick={handleSignup} disabled={isFormErr}>sign up</button>
+        <button id='signup-btn' onClick={handleSignup}>sign up</button>
       </form>
       <Confirmation isOpen = {isModalOpen} isClose={closeModal}/>
     </div>

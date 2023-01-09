@@ -46,6 +46,14 @@ button:disabled {
   background-color: gray;
 }
 
+fieldset {
+  border: #215056 1px solid;
+  
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
 input {
   background-color: #FCF0F2;
   border: #D0EDF1 2px solid;
@@ -58,12 +66,14 @@ input {
 form {
   background-color: #EFF8F3;
   aspect-ratio: 5 / 7;
+  width: 50%;
   margin: auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  gap: 3px;
  
 }
 

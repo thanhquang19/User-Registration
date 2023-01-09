@@ -1,5 +1,6 @@
+const { ObjectID } = require('bson');
 const express = require('express');
-const {findAuthUser, insertNewUser, findUserByUsername} = require('./dtbFunction')
+const {findAuthUser, insertNewUser, findUserByUsername, updatePassword} = require('./dtbFunction')
 
 const userRouter = express.Router();
 
@@ -39,8 +40,7 @@ userRouter.post('/', async (req, res, next) => {
             req.body.username,
             req.body.password,
             req.body.question,
-            req.body.secureAnswer
-    
+            req.body.secureAnswer    
         )
         console.log(insertedID)
         res.send(insertedID);
@@ -65,7 +65,15 @@ userRouter.get('/:username', async (req, res, next) => {
     next();
 })
 
+userRouter.get('/password', async (req, res, next) => {
+    console.log(req.query)
+})
 
+userRouter.put('/password', async (req, res, next) => {
+    
+    const confirmation = await updatePassword(ObjectID(req.body._id), req.body.password);
 
+    res.send(confirmation)
+})
 
 module.exports = userRouter;
