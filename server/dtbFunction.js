@@ -64,10 +64,11 @@ const findRegisterEmail = async (email) => {
 const insertNewUser = async(
     fullname, 
     email,
-    secureQuestion,
-    secureAnswer,
     username,
-    password
+    password,
+    secureQuestion,
+    secureAnswer
+    
 ) => {
         connectToDatabase();
         const newUserCreated = await userCollection.insertOne( {
