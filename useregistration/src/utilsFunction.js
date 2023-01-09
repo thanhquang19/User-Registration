@@ -100,3 +100,34 @@ export const checkEmptyInputs = (
     }
     return false;
 }
+
+export const updatePassword = async(_id, newPassword) => {
+    const updateInfo = {
+        _id: _id,
+        password: newPassword
+    }
+    const updateConfirmation = await fetch(`http://localhost:3001/user/password`, {
+        method: 'PUT',
+        headers : {
+            'Content-Type' :'application/json'
+        },
+        body: JSON.stringify(updateInfo)
+    }).then(response => response.json())
+
+    return updateConfirmation;
+
+}
+// export const checkPassword = async (_id, pwd) => {
+//     const passwordSearchParam = new URLSearchParams();
+//     passwordSearchParam.append('_id', _id);
+//     passwordSearchParam.append('password', pwd)
+//     try {
+//         const passwordMatch = await fetch (`http://localhost:3001/user/password?${passwordSearchParam.toString()}`, {
+//             method: 'GET',        
+//         }).then(response => response.json);
+//         console.log(passwordMatch);
+//         return passwordMatch;
+//     } catch(err) {
+//         return false;
+//     }
+// } not needed, reuse the findAuthUser 

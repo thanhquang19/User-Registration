@@ -34,7 +34,7 @@ const findAuthUser = async (username, password) => {
     ).project(
         
         {
-            '_id': 0,
+            '_id': 1,
             'authentication.username': 1,
             'fullname': 1,
             'email' :1
@@ -100,8 +100,22 @@ const findUserByUsername = async (username) => {
     return user;
 }
 
+const updatePassword  = async (_id, newpassword) => {
+    connectToDatabase();
+    const confirmation = await userCollection.updateOne(
+        {_id: _id},
+        {$set: {
+            'authentication.password': newpassword
+        }}
+    )
+    if(confirmation.modifiedCount === 1) {
+        return true
+    }
+    return false;
+}
 module.exports.findAuthUser = findAuthUser;
 module.exports.findRegisterEmail = findRegisterEmail;
 module.exports.disconnectToDatabase = disconnectToDatabase;
 module.exports.insertNewUser = insertNewUser;
 module.exports.findUserByUsername = findUserByUsername;
+module.exports.updatePassword = updatePassword;

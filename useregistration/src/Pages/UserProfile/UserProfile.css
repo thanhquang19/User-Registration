@@ -4,6 +4,8 @@
 }
 #change-password-set  {
     margin: 10px 0px;
+    aspect-ratio: 7/8;
+    width: 90%;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -12,4 +14,5 @@
 }
 #change-password-set[hidden] {
     display: none;
+    
 }
